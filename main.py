@@ -4,6 +4,7 @@ import sys
 
 app = Flask(__name__)
 mon = co2meter.CO2monitor(bypass_decrypt=True)
+mon.start_monitoring(interval=5)
 
 @app.route('/telemetry')
 def metrics():
