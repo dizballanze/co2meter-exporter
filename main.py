@@ -8,8 +8,7 @@ mon = co2meter.CO2monitor(bypass_decrypt=True)
 @app.route('/telemetry')
 def metrics():
     _, co2, temperature = mon.read_data()
-    response_text = f"""
-#TYPE co2meter_temperature_current gauge
+    response_text = f"""#TYPE co2meter_temperature_current gauge
 co2meter_temperature_current {temperature}
 #TYPE co2meter_co2_current gauge
 co2meter_temperature_current {co2}
