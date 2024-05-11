@@ -12,7 +12,7 @@ def metrics():
     response_text = f"""#TYPE co2meter_temperature_current gauge
 co2meter_temperature_current {temperature}
 #TYPE co2meter_co2_current gauge
-co2meter_temperature_current {co2}
+co2meter_co2_current {co2}
     """
     return Response(response_text, mimetype='text/plain')
 
