@@ -1,0 +1,3 @@
+CO2meter~=0.2.6
+hidapi~=0.14.0
+flask~=3.0.3
