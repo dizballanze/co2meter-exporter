@@ -1,14 +1,14 @@
-from dataclasses import dataclass
 import argparse
 import logging
+from dataclasses import dataclass
 
+import aiomisc
+import co2meter
 from aiohttp import web
 from aiomisc.service.aiohttp import AIOHTTPService
 from aiomisc.service.base import Service
-from atc_mi_interface import general_format, atc_mi_advertising_format
+from atc_mi_interface import atc_mi_advertising_format, general_format
 from bleak import BleakScanner
-import aiomisc
-import co2meter
 
 
 logger = logging.getLogger(__name__)
@@ -80,14 +80,14 @@ class TelemetryService(AIOHTTPService):
         self.metrics.extend([self._temperature_metric, self._co2_metric])
 
         app = web.Application()
-        app.router.add_get('/telemetry', self.telemetry_handler)
+        app.router.add_get("/telemetry", self.telemetry_handler)
         return app
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run an aiohttp service.")
-    parser.add_argument('--host', type=str, default='0.0.0.0', help='Host to run the HTTP server on.')
-    parser.add_argument('--port', type=int, default=8080, help='Port to run the HTTP server on.')
+    parser.add_argument("--host", type=str, default="0.0.0.0", help="Host to run the HTTP server on.")
+    parser.add_argument("--port", type=int, default=8080, help="Port to run the HTTP server on.")
     args = parser.parse_args()
 
     mon = co2meter.CO2monitor(bypass_decrypt=True)
