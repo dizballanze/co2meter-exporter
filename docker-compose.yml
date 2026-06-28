@@ -1,0 +1,8 @@
+services:
+  co2meter-exporter:
+    build: .
+    network_mode: host
+    privileged: true
+    volumes:
+      - /var/run/dbus:/var/run/dbus:ro
+    restart: unless-stopped
